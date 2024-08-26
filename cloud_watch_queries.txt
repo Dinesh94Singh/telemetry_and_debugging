@@ -1,0 +1,5 @@
+filter @logStream like /<insert regex>/
+| fields @log, @logStream, @message
+| parse @message /"log":(?<mylog>.*)".*/
+| filter mylog like /<insert search query>/
+| limit 1000
